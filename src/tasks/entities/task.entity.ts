@@ -4,11 +4,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-enum TaskStatus {
+export enum TaskStatus {
   nuevo = 'nuevo',
   terminado = 'terminado',
 }

@@ -4,7 +4,7 @@ import { Proyecto } from 'src/proyectos/entities/proyecto.entity';
 import { Repository } from 'typeorm';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { Task } from './entities/task.entity';
+import { Task, TaskStatus } from './entities/task.entity';
 
 @Injectable()
 export class TasksService {
@@ -51,9 +51,11 @@ export class TasksService {
       throw new NotFoundException(`Tarea con id ${id} no encontrada.`);
     }
 
-    const taskEstado = task.estado === 'nuevo' ? 'terminado' : 'nuevo';
+    const estado: TaskStatus = task.estado === TaskStatus.nuevo ? TaskStatus.terminado : TaskStatus.nuevo;
      
-     await this.taskRepository.update(id, { estado: task.estado });
+     await this.taskRepository.update(id, { estado });
+
+     task.estado = estado;
 
      return task;
   }
