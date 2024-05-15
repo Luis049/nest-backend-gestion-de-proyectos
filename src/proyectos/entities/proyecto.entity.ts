@@ -1,24 +1,25 @@
-import { Estado } from 'src/estados/entities/estado.entity';
-import { Column, DeleteDateColumn, Entity, ManyToOne } from 'typeorm';
+import { Task } from 'src/tasks/entities/task.entity';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 
-@Entity()
+@Entity('proyectos')
 export class Proyecto {
-
-  @Column({primary:true, generated: true})
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  proyectoId: string;
 
   @Column()
   name: string;
 
-  @Column({ length: 500})
+  @Column({ length: 500 })
   description?: string;
 
+  
+  @OneToMany(() => Task, (task) => task.proyecto)
+  tasks: Task[];
 
-  @DeleteDateColumn()
-  deletedAt: Date;
-
-  @ManyToOne(() => Estado, (estado) => estado.id, {
-    eager: true //para que traiga el estado al traer el finOne
-  })
-    estado: Estado;
+ 
 }

@@ -8,7 +8,5 @@ export class CreateProyectoDto {
 
     @IsString()
     description?: string;
-    
-    @IsString()
-    estado: string;
+     
 }

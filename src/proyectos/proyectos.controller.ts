@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ProyectosService } from './proyectos.service';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateProyectoDto } from './dto/create-proyecto.dto';
 import { UpdateProyectoDto } from './dto/update-proyecto.dto';
+import { ProyectosService } from './proyectos.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('proyectos')
 @Controller('proyectos')
 export class ProyectosController {
   constructor(private readonly proyectosService: ProyectosService) {}
@@ -18,17 +20,19 @@ export class ProyectosController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.proyectosService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateProyectoDto: UpdateProyectoDto) {
+  update(@Param('id') id: string, @Body() updateProyectoDto: UpdateProyectoDto) {
     return this.proyectosService.update(id, updateProyectoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: string) {
     return this.proyectosService.remove(id);
   }
 }
+
+

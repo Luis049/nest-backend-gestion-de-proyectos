@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ProyectosModule } from './proyectos/proyectos.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EstadosModule } from './estados/estados.module';
+import { TasksModule } from './tasks/tasks.module';
+import { ProyectosModule } from './proyectos/proyectos.module';
 
 @Module({
   imports: [
@@ -17,8 +17,8 @@ import { EstadosModule } from './estados/estados.module';
       synchronize: true,
     }),
     ProyectosModule,
-    EstadosModule,
-  ],
+    TasksModule,
+  ],  
   controllers: [],
   providers: [],
 })
