@@ -1,9 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { ApiTags } from '@nestjs/swagger';
-
 
 @ApiTags('tasks')
 @Controller('tasks')
@@ -12,7 +19,6 @@ export class TasksController {
 
   @Post()
   create(@Body() createTaskDto: CreateTaskDto) {
-    
     return this.tasksService.create(createTaskDto);
   }
 
@@ -36,7 +42,6 @@ export class TasksController {
     return this.tasksService.remove(id);
   }
 
-  
   @Patch(':id/toggle')
   switchear(@Param('id') id: string) {
     return this.tasksService.switchear(id);

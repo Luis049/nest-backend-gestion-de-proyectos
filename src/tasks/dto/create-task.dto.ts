@@ -6,9 +6,9 @@ export class CreateTaskDto {
   @MinLength(3)
   name: string;
 
-  @IsString()
-  description: string;
+  // @IsString()
+  // description: string;
 
   @IsUUID()
-  proyectoId: string;
+  proyectoId?: string;
 }

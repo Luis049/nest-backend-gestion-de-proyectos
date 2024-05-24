@@ -6,11 +6,11 @@ export class UpdateTaskDto {
   @MinLength(3)
   name: string;
 
-  @IsString()
-  @IsOptional()
-  description: string;
+  // @IsString()
+  // @IsOptional()
+  // description: string;
 
-  @IsUUID()
+  @IsString()
   @IsOptional()
   proyectoId: string;
 }

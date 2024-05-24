@@ -1,6 +1,7 @@
 import { Proyecto } from 'src/proyectos/entities/proyecto.entity';
 import {
   Column,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -15,16 +16,19 @@ export enum TaskStatus {
 @Entity('tasks')
 export class Task {
   @PrimaryGeneratedColumn('uuid')
-  taskId: string;
+  taskId?: string;
 
   @Column()
   name: string;
 
-  @Column({ length: 500 })
-  description?: string;
+  @Column()
+  proyectoId: string;
 
   @Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.nuevo })
-  estado: TaskStatus;
+  estado?: TaskStatus;
+
+  @DeleteDateColumn()
+  deleted: Date;
 
   @JoinColumn()
   @ManyToOne(() => Proyecto, (proyecto) => proyecto.tasks)

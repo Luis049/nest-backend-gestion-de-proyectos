@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateProyectoDto } from './dto/create-proyecto.dto';
@@ -44,6 +44,6 @@ export class ProyectosService {
   }
 
   async remove(id: string) {
-    return await this.proyectosRepository.delete({ proyectoId: id });
+    return await this.proyectosRepository.softDelete({ proyectoId: id });
   }
 }

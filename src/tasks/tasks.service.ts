@@ -43,7 +43,7 @@ export class TasksService {
   }
 
   async remove(id: string) {
-    return await this.taskRepository.delete({ taskId: id });
+    return await this.taskRepository.softDelete({ taskId: id });
   }
   async switchear(id: string ): Promise<Task> {
     const task = await this.taskRepository.findOneBy({ taskId: id });

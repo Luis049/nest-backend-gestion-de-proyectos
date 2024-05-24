@@ -1,6 +1,7 @@
 import { Task } from 'src/tasks/entities/task.entity';
 import {
   Column,
+  DeleteDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn
@@ -16,6 +17,9 @@ export class Proyecto {
 
   @Column({ length: 500 })
   description?: string;
+
+  @DeleteDateColumn()
+  deleted: Date;
 
   
   @OneToMany(() => Task, (task) => task.proyecto)
